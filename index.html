@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thivinia Chita Arasu - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tab.active {
+            background: white;
+            border-bottom-color: #3498db;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            border-radius: 2px;
+        }
+
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #555;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .experience-timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3498db, #9b59b6);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            display: flex;
+            margin-bottom: 60px;
+            align-items: center;
+            position: relative;
+        }
+
+        .experience-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .experience-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+            border: 1px solid #e9ecef;
+        }
+
+        .experience-item:nth-child(even) .experience-content {
+            margin-right: 10%;
+        }
+
+        .experience-item:nth-child(odd) .experience-content {
+            margin-left: 10%;
+        }
+
+        .experience-date {
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .experience-company {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .experience-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .experience-description ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .experience-description li {
+            margin-bottom: 8px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #3498db;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .education-date {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .education-degree {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .education-school {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .timeline-line {
+                left: 20px;
+            }
+            
+            .experience-item {
+                flex-direction: column !important;
+                margin-left: 40px;
+            }
+            
+            .experience-content {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">THIVINIA CHITA ARASU</h1>
+                <p class="title">Business Professional | Operations Specialist | Entrepreneur</p>
+                <div class="contact-info">
+                    <div class="contact-item">📍 Pulau Pinang, Malaysia</div>
+                    <div class="contact-item">📧 thiviniachitaarasu22@gmail.com</div>
+                    <div class="contact-item">📱 +60123148637</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('about')">About Me</button>
+            <button class="nav-tab" onclick="showTab('experience')">Experience</button>
+            <button class="nav-tab" onclick="showTab('skills')">Skills</button>
+            <button class="nav-tab" onclick="showTab('education')">Education</button>
+            <button class="nav-tab" onclick="showTab('contact')">Contact</button>
+        </div>
+
+        <div class="content">
+            <div id="about" class="tab-content active">
+                <h2 class="section-title">About Me</h2>
+                <p class="summary-text">
+                    Motivated and adaptable business professional with a strong background in operations, administration, and team collaboration. Experienced in time management and working under pressure, with demonstrated ability to contribute effectively across diverse industries. Passionate about startups and entrepreneurship, seeking to leverage analytical skills and business acumen to drive meaningful impact and continue professional growth.
+                </p>
+                <p class="summary-text">
+                    My journey has taken me through various industries including manufacturing, food service, wholesale, and corporate services, giving me a unique perspective on business operations and the ability to adapt quickly to new environments and challenges.
+                </p>
+            </div>
+
+            <div id="experience" class="tab-content">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">September 2025 - Present</div>
+                            <div class="experience-title">Intern</div>
+                            <div class="experience-company">Neutron Group Sdn. Bhd. (Remote)</div>
+                            <div class="experience-description">
+                                <ul>
+                                    <li>Manage documentation, filing, and data entry across 12 companies, ensuring accurate and organized records</li>
+                                    <li>Coordinate meetings, schedules, and inter-division communications to support efficient workflow</li>
+                                    <li>Prepare comprehensive reports, presentations, and meeting minutes for management review</li>
+                                    <li>Contribute to marketing initiatives, promotional campaigns, and branding activities, including social media content creation and corporate updates</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">June 2025 - July 2025</div>
+                            <div class="experience-title">Sales Associate</div>
+                            <div class="experience-company">Sunshine Wholesale Mall Sdn. Bhd</div>
+                            <div class="experience-description">
+                                <ul>
+                                    <li>Managed reception, storage, dispatch and daily operations of product inventory</li>
+                                    <li>Ensured conformity and quality control of products received and delivered</li>
+                                    <li>Maintained inventory management systems: controlled goods rotation, verified availability, coordinated supplier procurement</li>
+                                    <li>Performed warehouse organization, cleaning, and comprehensive inventory tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">July 2020 - October 2020</div>
+                            <div class="experience-title">Student Intern</div>
+                            <div class="experience-company">Marrybrown, Parit Buntar</div>
+                            <div class="experience-description">
+                                <ul>
+                                    <li>Maintained organized stock areas and managed food and beverage supply inventory</li>
+                                    <li>Handled cash transactions and payment processing with accuracy</li>
+                                    <li>Resolved customer complaints and issues while maintaining positive customer relations</li>
+                                    <li>Collaborated with team members to ensure efficient and quality service delivery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <div class="experience-content">
+                            <div class="experience-date">June 2018 - August 2018</div>
+                            <div class="experience-title">Production Operator</div>
+                            <div class="experience-company">Flextronics, Batu Kawan</div>
+                            <div class="experience-description">
+                                <ul>
+                                    <li>Maintained accurate production records, tracked output, and reported on production progress</li>
+                                    <li>Ensured smooth production operations and workflow optimization</li>
+                                    <li>Consistently met and exceeded production targets and quality standards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="skills" class="tab-content">
+                <h2 class="section-title">Areas of Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-title">🏢 Business Operations & Administration</div>
+                        <p>Comprehensive experience in managing daily operations, documentation systems, and administrative processes across multiple organizations.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">📊 Marketing & Brand Development</div>
+                        <p>Proven track record in creating marketing content, managing promotional campaigns, and developing branding initiatives.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">📋 Project Coordination & Management</div>
+                        <p>Strong ability to coordinate meetings, manage schedules, and ensure efficient workflow across departments and divisions.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">🤝 Customer Relations & Sales</div>
+                        <p>Excellent customer service skills with experience in complaint resolution, relationship building, and sales operations.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">💡 Entrepreneurship & Innovation</div>
+                        <p>Passionate about startups and business development with academic background in Engineering Entrepreneurship.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">📦 Inventory & Supply Chain Management</div>
+                        <p>Extensive experience in inventory control, quality assurance, supplier coordination, and warehouse operations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="education" class="tab-content">
+                <h2 class="section-title">Education & Development</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-date">Sept 2018 - Oct 2021</div>
+                        <div class="education-degree">Bachelor of Business (Honours) in Engineering Entrepreneurship</div>
+                        <div class="education-school">Universiti Malaysia Perlis</div>
+                    </div>
+                    <div class="education-card">
+                        <div class="education-date">August 2025</div>
+                        <div class="education-degree">K-Youth Development Programme 2025</div>
+                        <div class="education-school">Python for Beginner Certification</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact" class="tab-content">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-section">
+                    <p class="summary-text">
+                        I'm always open to discussing new opportunities, collaborations, or simply connecting with fellow professionals. Feel free to reach out!
+                    </p>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h3>📧 Email</h3>
+                            <p>thiviniachitaarasu22@gmail.com</p>
+                        </div>
+                        <div class="contact-card">
+                            <h3>📱 Phone</h3>
+                            <p>+60123148637</p>
+                        </div>
+                        <div class="contact-card">
+                            <h3>📍 Location</h3>
+                            <p>Pulau Pinang, Malaysia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+        }
+
+        // Add smooth scrolling animation on load
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(function() {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
